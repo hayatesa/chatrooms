@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div id="content">
+        <div id="room"></div>
+        <div id="room-list"></div>
+        <div id="messages"></div>
+    </div>
+    <form id="send-form">
+        <input id="send-message" />
+        <button id="send-button" type="submit">Send</button>
+        <div id="help">
+            Chat commands:
+            <ul>
+                <li>Change nickname: <code>/nick [username]</code></li>
+                <li>Join/create room: <code>/join [room name]</code></li>
+            </ul>
+        </div>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="/javascripts/chat.js"></script>
+    <script src="/javascripts/chat_ui.js"></script>
+</body>
+</html>
