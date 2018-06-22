@@ -23,7 +23,7 @@ function send404(response) {
  */
 function sendFile(response, filePath, fileContents) {
     // path.basename获取文件名，mime.getType(string)返回MIME type
-    response.writeHead(200, {'Content-Type':mime.getType(path.basename(filePath)), 'charset': 'utf-8'})
+    response.writeHead(200, {'Content-Type':mime.getType(path.basename(filePath)), 'charset': 'utf-8'});
     response.end(fileContents);
 }
 
@@ -60,19 +60,21 @@ function serveStatic(response, cache, absPath) {
 const server = http.createServer((request, response)=>{
     let filePath = false; // 相对路径
     let prefix = 'public';// 范围路径前缀
-    let suffix = '';// 范围路径后缀
-    if (request.url == '/') {
-        // 根路径
+    if (request.url === '/') {
+        // 首页
         filePath = path.join(prefix, '/index.html');
     } else {
-        filePath = prefix + request.url + suffix;
+        filePath = prefix + request.url;
     }
     let absPath = path.join(__dirname, filePath);
     // 绝对路径
     console.log(absPath);
     serveStatic(response, cache, absPath);
-})
+});
 
 server.listen(3000, '127.0.0.1', ()=>{
     console.log("Server listening on port 3000");
 });
+
+const chatServer = require(path.join(__dirname,'./lib/chat_server'));
+chatServer.listen(server);
